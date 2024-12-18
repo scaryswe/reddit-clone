@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <a href="{{post.url}}" class="lead">{{post.title}}</a>
+        <p>{{post.summary}}</p>
+        <p>{{post.author.username}}</p>
+        <form action="/posts/{{post._id}}/comments" method="post">
+            {{#if currentUser}}
+            <textarea class='form-control' name="content" placeholder="Comment"></textarea>
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+            {{/if}}
+            {{#each post.comments}}
+            {{> comment comment=this postId=../post._id currentUser=../currentUser}}
+            {{/each}}
+        </form>
+    </div>
+</div>
